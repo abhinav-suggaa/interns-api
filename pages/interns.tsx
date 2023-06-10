@@ -12,6 +12,7 @@ export default function Interns() {
     return (
         <div>
             <h1>Intern Details</h1>
-            <pre>{JSON.stringify</pre>
+            <pre>{JSON.stringify(data,null,2)}</pre>
         </div>
+    );
 }
