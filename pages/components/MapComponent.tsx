@@ -1,7 +1,7 @@
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { useQuery } from '@apollo/client';
 import client from '../../apolloClient';
-import { GET_ADDRESS } from '../queries'; // Replace with the path to your GraphQL queries
+import { GET_ADDRESS } from '../queries'; 
 
 const MapComponent = () => {
     const { loading, error, data } = useQuery(GET_ADDRESS,{client});
