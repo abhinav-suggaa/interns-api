@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import client from '../apolloClient';
 import { GET_BRANCHES } from './queries';
+import { FaRegEdit,FaRegTrashAlt } from 'react-icons/fa';
 
 export default function Branches() {
   const { loading, error, data } = useQuery(GET_BRANCHES, { client });
@@ -31,6 +32,7 @@ export default function Branches() {
                 <td className="px-6 py-4 whitespace-nowrap">{branch.branch_name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{branch.hod_name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{branch.hod_contact}</td>
+                <td className="px-6 py-4 whitespace-nowrap"><p><span id='edit'><FaRegEdit/></span><span id='delete'><FaRegTrashAlt/></span></p></td>
               </tr>
             ))}
           </tbody>

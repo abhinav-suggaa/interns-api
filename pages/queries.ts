@@ -31,3 +31,27 @@ export const GET_BRANCHES = gql `
   }
     }
     `;
+
+export const DEL_INTERN = gql `
+mutation DeleteIntern {
+  delete_intern_db_intern_by_pk({id : $id}) {
+    id
+  }
+}
+`;
+
+export const DEL_COLLEGE = gql `
+mutation DeleteCollege {
+  delete_intern_db_college_by_pk({id : $id}) {
+    id
+  }
+}
+`;
+
+export const DEL_BRANCH = gql `
+mutation DeleteBranch {
+  delete_intern_db_branch_by_pk({id : $id}) {
+    id
+  }
+}
+`;

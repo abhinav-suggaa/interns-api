@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import client from '../apolloClient';
 import { GET_INTERNS } from './queries';
+import { FaRegEdit,FaRegTrashAlt } from 'react-icons/fa';
 
 export default function Interns() {
   const { loading, error, data } = useQuery(GET_INTERNS, { client });
@@ -22,6 +23,7 @@ export default function Interns() {
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">First Name</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Name</th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stipend</th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
@@ -31,6 +33,7 @@ export default function Interns() {
                 <td className="px-6 py-4 whitespace-nowrap">{intern.first_name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{intern.last_name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{intern.stipend}</td>
+                <td className="px-6 py-4 whitespace-nowrap"><p><span id='edit'><FaRegEdit/></span><span id='delete'><FaRegTrashAlt/></span></p></td>
               </tr>
             ))}
           </tbody>
