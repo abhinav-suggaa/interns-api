@@ -6,7 +6,16 @@ import { FaRegEdit,FaRegTrashAlt } from 'react-icons/fa';
 
 export default function Colleges() {
   const { loading, error, data } = useQuery(GET_COLLEGES, { client });
+  const [deleteCollege] = useMutation(DEL_COLLEGE,{ client});
 
+  const deleteCollegeHandler = (id: number) => {
+    deleteCollege({ variables: { id } })
+      .then(() => {
+        alert('College deleted successfully');
+      })
+      .catch((error) => {
+        console.log(error);
+      })};
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
@@ -36,7 +45,10 @@ export default function Colleges() {
                   <td className="px-6 py-4 whitespace-nowrap">{college.id}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{college.college_name}</td>
                   <td className="px-6 py-4 whitespace-nowrap">{college.college_address}</td>
-                  <td className="px-6 py-4 whitespace-nowrap"><p><span id='edit'><FaRegEdit/></span><span id='delete'><FaRegTrashAlt/></span></p></td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <button id='edit'><FaRegEdit/></button>
+                    <button id='delete' onClick={() => deleteCollegeHandler(college.id)}><FaRegTrashAlt/></button>
+                  </td>
                 </tr>
               );
             })}

@@ -47,3 +47,11 @@ export const DEL_COLLEGE = gql`
     }
   }
 `;
+
+export const DEL_BRANCH = gql`
+  mutation DeleteBranch($id: Int!) {
+    delete_intern_db_branch_by_pk(id: $id) {
+      id
+    }
+  }
+`;

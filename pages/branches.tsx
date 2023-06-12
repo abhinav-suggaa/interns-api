@@ -1,11 +1,22 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery,useMutation } from '@apollo/client';
 import client from '../apolloClient';
-import { GET_BRANCHES } from './queries';
+import { GET_BRANCHES,DEL_BRANCH } from './queries';
 import { FaRegEdit,FaRegTrashAlt } from 'react-icons/fa';
 
 export default function Branches() {
   const { loading, error, data } = useQuery(GET_BRANCHES, { client });
+  const [deleteBranch] = useMutation(DEL_BRANCH,{ client});
+
+  const deleteBranchHandler = (id: number) => {
+    deleteBranch({ variables: { id } })
+      .then(() => {
+        alert('Branch deleted successfully');
+      })
+      .catch((error) => {
+        console.log(error);
+      })};
+
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -26,13 +37,21 @@ export default function Branches() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {branchData.map((branch) => (
+            {branchData.map((branch : {
+              id: number;
+              branch_name: string;
+              hod_name: string;
+              hod_contact: string;
+            }) => (
               <tr key={branch.id}>
                 <td className="px-6 py-4 whitespace-nowrap">{branch.id}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{branch.branch_name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{branch.hod_name}</td>
                 <td className="px-6 py-4 whitespace-nowrap">{branch.hod_contact}</td>
-                <td className="px-6 py-4 whitespace-nowrap"><p><span id='edit'><FaRegEdit/></span><span id='delete'><FaRegTrashAlt/></span></p></td>
+                <td className="px-6 py-4 whitespace-nowrap">
+                  <button id='edit'><FaRegEdit/></button>
+                  <button id='delete' onClick={() => deleteBranchHandler(branch.id)}><FaRegTrashAlt/></button>
+                </td>
               </tr>
             ))}
           </tbody>
