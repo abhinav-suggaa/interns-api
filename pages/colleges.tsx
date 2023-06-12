@@ -1,7 +1,7 @@
 import React from 'react';
-import { useQuery } from '@apollo/client';
+import { useQuery,useMutation } from '@apollo/client';
 import client from '../apolloClient';
-import { GET_COLLEGES } from './queries';
+import { GET_COLLEGES,DEL_COLLEGE } from './queries';
 import { FaRegEdit,FaRegTrashAlt } from 'react-icons/fa';
 
 export default function Colleges() {
@@ -26,7 +26,11 @@ export default function Colleges() {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {collegeData.map((college) => {
+            {collegeData.map((college:{
+              id: number;
+              college_name: string;
+              college_address: string;
+            }) => {
               return (
                 <tr key={college.id}>
                   <td className="px-6 py-4 whitespace-nowrap">{college.id}</td>
