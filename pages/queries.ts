@@ -56,4 +56,12 @@ export const DEL_BRANCH = gql`
   }
 `;
 
-
+export const GET_ADDRESS = gql `
+    query GetAddressDetails {
+      intern_db_get_adrresses {
+    id
+    address
+    lat
+    lng
+  }}
+`;
