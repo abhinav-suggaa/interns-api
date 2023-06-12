@@ -1,3 +1,4 @@
+import MapComponent from "./components/MapComponent";
 import Navbar from "./components/Navbar";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
       </header>
       <main className="container mx-auto py-6 px-4">
         <Navbar />
+        <MapComponent />
       </main>
     </div>
   );
