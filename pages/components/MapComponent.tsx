@@ -23,13 +23,13 @@ const MapComponent = () => {
       <LoadScript googleMapsApiKey="AIzaSyABi8-qwYxFA0t-KeTuuKegUMI5qbLlc6k">
         <GoogleMap mapContainerStyle={mapStyles} zoom={6} center={defaultCenter}>
           {data.intern_db_get_adrresses.map((location:{
-            id: string;
+            id: number;
             lat: number;
             lng: number;
-            
           }) => (
             <Marker key={location.id} position={{ lat: location.lat, lng: location.lng }} />
           ))}
+          
         </GoogleMap>
       </LoadScript>
     );
