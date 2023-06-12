@@ -1,10 +1,12 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { useQuery,useMutation } from '@apollo/client';
 import client from '../apolloClient';
 import { GET_BRANCHES,DEL_BRANCH } from './queries';
 import { FaRegEdit,FaRegTrashAlt } from 'react-icons/fa';
 
 export default function Branches() {
+  const router = useRouter();
   const { loading, error, data } = useQuery(GET_BRANCHES, { client });
   const [deleteBranch] = useMutation(DEL_BRANCH,{ client});
 
@@ -12,6 +14,7 @@ export default function Branches() {
     deleteBranch({ variables: { id } })
       .then(() => {
         alert('Branch deleted successfully');
+        router.reload();
       })
       .catch((error) => {
         console.log(error);
